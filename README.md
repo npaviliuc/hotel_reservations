@@ -113,12 +113,6 @@ You should see the home page.
 
 ## Project Structure
 
-    
-
-IGNORE_WHEN_COPYING_START
-Use code with caution. Markdown
-IGNORE_WHEN_COPYING_END
-
 ```
 hotel-reservation-app/
 ├── pom.xml
