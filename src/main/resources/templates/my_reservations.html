@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Reservations</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">      
+</head>
+<body>
+    <div class="container">
+         <div class="header">
+            <h1>My Reservations</h1>
+            <div th:if="${session.loggedInUser != null}">
+                Welcome, <span th:text="${session.loggedInUser.username}">User</span>!
+                <a th:href="@{/logout}">Logout</a>
+            </div>
+             <p><a th:href="@{/}">Back to Home</a></p>
+        </div>
+        <div th:if="${successMessage}" class="message success" th:text="${successMessage}"></div>
+
+        <div th:if="${#lists.isEmpty(reservations)}">
+            <p>You have no reservations.</p>
+        </div>
+        <table th:unless="${#lists.isEmpty(reservations)}">
+            <thead>
+                <tr>
+                    <th>Room</th>
+                    <th>Guest Name</th>
+                    <th>Check-in</th>
+                    <th>Check-out</th>
+                    <th>ID Card</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="res : ${reservations}">
+                    <td th:text="${res.room.roomNumber} + ' (' + ${res.room.type} + ')'"></td>
+                    <td th:utext="${res.guestName}"></td>
+                    <td th:text="${#temporals.format(res.checkInDate, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${#temporals.format(res.checkOutDate, 'yyyy-MM-dd')}"></td>
+                    <td>
+                        <a th:href="@{'/uploads/' + ${res.idCardFilename}}" th:utext="${res.idCardFilename}" target="_blank">View ID</a>
+                        <form th:action="@{/reservations/cancel}" method="post" style="display: inline; margin-left: 10px;">
+                            <input type="hidden" name="reservationId" th:value="${res.id}" />
+                            <button type="submit" onclick="return confirm('Are you sure you want to cancel this reservation?');">Cancel</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

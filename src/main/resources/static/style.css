@@ -1,0 +1,258 @@
+:root {
+    --primary-color: #007bff; /* A welcoming blue */
+    --primary-color-hover: #0056b3; /* Darker blue for hover */
+    --secondary-color: #6c757d; /* A neutral gray */
+    --success-bg: #d4edda;
+    --success-text: #155724;
+    --success-border: #c3e6cb;
+    --error-bg: #f8d7da;
+    --error-text: #721c24;
+    --error-border: #f5c6cb;
+    --light-gray-bg: #f8f9fa; /* Very light gray for backgrounds like table headers */
+    --border-color: #dee2e6; /* Standard border color */
+    --input-border-color: #ced4da;
+    --text-color: #343a40; /* Dark gray for text */
+    --body-bg: #f4f7f6; /* Light, neutral background */
+    --container-bg: #ffffff;
+    --link-color: var(--primary-color);
+}
+
+/* --- General Layout --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--body-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: var(--container-bg);
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 0.75em;
+    font-weight: 500;
+}
+
+h1 { font-size: 2.2em; }
+h2 { font-size: 1.8em; }
+p { margin-bottom: 1em; }
+
+/* --- Header/Navigation --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header h1 {
+    margin-bottom: 0;
+    font-size: 1.8em; /* Slightly smaller if inside header */
+}
+
+.header .user-info {
+    font-size: 0.9em;
+}
+
+.header .nav-links a,
+.header .user-info a {
+    margin-left: 15px;
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.header .nav-links a:hover,
+.header .user-info a:hover {
+    text-decoration: underline;
+    color: var(--primary-color-hover);
+}
+
+/* --- Forms --- */
+form div {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 0.95em;
+    color: #495057;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    box-sizing: border-box; /* Important for width: 100% with padding */
+    font-size: 1em;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary-color);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+input[type="file"] {
+    display: block;
+    padding: 8px 0; /* Adjust padding as needed */
+}
+
+
+button,
+input[type="submit"] { /* General button styling */
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.15s ease-in-out;
+    text-align: center;
+    text-decoration: none; /* For anchor tags styled as buttons */
+    display: inline-block;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: var(--primary-color-hover);
+}
+
+/* --- Tables --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 12px 15px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+th {
+    background-color: var(--light-gray-bg);
+    font-weight: bold;
+    color: #495057;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #fdfdfd; /* Subtle striping */
+}
+tbody tr:hover {
+    background-color: #f1f1f1; /* Hover effect for rows */
+}
+
+
+/* --- Informational Messages --- */
+.message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 0.95em;
+}
+
+.message.success {
+    color: var(--success-text);
+    background-color: var(--success-bg);
+    border-color: var(--success-border);
+}
+
+.message.error {
+    color: var(--error-text);
+    background-color: var(--error-bg);
+    border-color: var(--error-border);
+}
+
+/* --- Links --- */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--primary-color-hover);
+    text-decoration: underline;
+}
+
+/* Specific link styling in tables */
+table a {
+    font-weight: 500;
+}
+
+/* --- Utility Classes --- */
+.text-center {
+    text-align: center;
+}
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+
+/* --- Responsive Considerations --- */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 20px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .header .user-info, .header .nav-links {
+        margin-top: 10px;
+        width: 100%;
+        text-align: left;
+    }
+    .header .user-info a, .header .nav-links a {
+        margin-left: 0;
+        margin-right: 15px; /* Spacing between links if they wrap */
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="date"],
+    input[type="number"],
+    textarea,
+    select {
+        font-size: 16px; /* Prevent iOS zoom on focus */
+    }
+}

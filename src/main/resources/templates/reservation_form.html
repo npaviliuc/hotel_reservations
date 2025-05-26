@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Make Reservation</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">      
+</head>
+<body>
+    <div class="container">
+        <h2>Reserve Room: <span th:text="${room.roomNumber} + ' (' + ${room.type} + ')'"></span></h2>
+        <div th:if="${errorMessage}" class="message error" th:text="${errorMessage}"></div>
+
+        <form th:action="@{/reserve}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="roomId" th:value="${room.id}" />
+            <div>
+                <label for="guestName">Guest Name:</label>
+                <input type="text" id="guestName" name="guestName" required />
+            </div>
+            <div>
+                <label for="checkInDate">Check-in Date:</label>
+                <input type="date" id="checkInDate" name="checkInDate" required />
+            </div>
+            <div>
+                <label for="checkOutDate">Check-out Date:</label>
+                <input type="date" id="checkOutDate" name="checkOutDate" required />
+            </div>
+            <div>
+                <label for="idCard">ID Card (Image/PDF):</label>
+                <input type="file" id="idCard" name="idCard" accept="image/*,application/pdf" required />
+            </div>
+            <div>
+                <button type="submit">Confirm Reservation</button>
+            </div>
+        </form>
+        <p><a th:href="@{/rooms}">Back to Rooms</a></p>
+    </div>
+</body>
+</html>

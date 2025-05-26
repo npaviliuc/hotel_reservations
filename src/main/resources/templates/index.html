@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hotel Reservation</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">  
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to Our Hotel</h1>
+            <div th:if="${session.loggedInUser != null}">
+                Welcome, <span th:text="${session.loggedInUser.username}">User</span>!
+                <a th:href="@{/my-reservations}">My Reservations</a> |
+                <a th:href="@{/logout}">Logout</a>
+            </div>
+            <div th:unless="${session.loggedInUser != null}">
+                <a th:href="@{/login}">Login</a> |
+                <a th:href="@{/register}">Register</a>
+            </div>
+        </div>
+
+        <h2>Available Rooms</h2>
+        <p><a th:href="@{/rooms}">View all rooms & Search</a></p>
+
+         <div th:if="${#lists.isEmpty(rooms)}">
+            <p>No rooms currently available.</p>
+        </div>
+        <table th:unless="${#lists.isEmpty(rooms)}">
+            <thead>
+                <tr>
+                    <th>Room Number</th>
+                    <th>Type</th>
+                    <th>Price/Night</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="room : ${rooms}">
+                    <td th:text="${room.roomNumber}">101</td>
+                    <td th:text="${room.type}">Single</td>
+                    <td th:text="${'$' + #numbers.formatDecimal(room.pricePerNight, 1, 'COMMA', 2, 'POINT')}"></td>
+                    <td>
+                        <a th:if="${room.available}" th:href="@{'/reserve/' + ${room.id}}">Book Now</a>
+                        <span th:unless="${room.available}">Booked</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
