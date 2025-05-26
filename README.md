@@ -119,7 +119,7 @@ IGNORE_WHEN_COPYING_START
 Use code with caution. Markdown
 IGNORE_WHEN_COPYING_END
 
-'''
+```
 hotel-reservation-app/
 ├── pom.xml
 ├── src/
@@ -148,7 +148,7 @@ hotel-reservation-app/
 │ ├── java/ (Test classes)
 │ └── resources/ (Test specific resources)
 └── uploads/ (Directory for uploaded files - created at runtime)
-'''
+```
 ## File Uploads
 
 *   Uploaded files (ID cards) are stored in the `uploads/` directory in the project's root (when run from IDE/Maven plugin).
